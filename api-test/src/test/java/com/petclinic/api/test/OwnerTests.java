@@ -13,7 +13,7 @@ import io.restassured.response.Response;
 public class OwnerTests {
 
     static Faker faker;
-    static Owner userPayload;
+    static Owner ownerPayload;
 
     @BeforeClass
     public static void setup() {
@@ -26,13 +26,13 @@ public class OwnerTests {
         String city = faker.address().cityName();
         String telephone = "6" + faker.number().digits(9).toString();
 
-        userPayload = new Owner(firstName, lastName, address, city, telephone);
+        ownerPayload = new Owner(firstName, lastName, address, city, telephone);
     }
 
     @Test
     public void testAddOwner() {
 
-        Response response = OwnerEndPoints.addOwner(userPayload);
+        Response response = OwnerEndPoints.addOwner(ownerPayload);
         response.then().log().all();
 
         Assert.assertEquals(201, response.getStatusCode());
@@ -48,7 +48,7 @@ public class OwnerTests {
 
     @Test
     public void testUpdateOwner() {
-        Response response = OwnerEndPoints.updateOwner(1, userPayload);
+        Response response = OwnerEndPoints.updateOwner(1, ownerPayload);
         response.then().log().all();
 
         Assert.assertEquals(200, response.getStatusCode());
