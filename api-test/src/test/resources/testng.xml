@@ -1,0 +1,15 @@
+<!DOCTYPE suite SYSTEM "http://testng.org/testng-1.0.dtd">
+
+<suite name="PetClinic Test Suite">
+    <listeners>
+        <listener class-name="com.petclinic.api.utilities.ExtentReportManager">
+        </listener>
+    </listeners>
+    <test name="Tests">
+        <classes>
+            <class name="com.petclinic.api.test.OwnerTests" />
+            <class name="com.petclinic.api.test.PetTests" />
+        </classes>
+    </test>
+
+</suite>
