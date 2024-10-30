@@ -4,9 +4,9 @@ import java.text.SimpleDateFormat;
 import java.util.Date;
 import java.util.concurrent.TimeUnit;
 
-import org.junit.Assert;
-import org.junit.BeforeClass;
-import org.junit.Test;
+import org.testng.Assert;
+import org.testng.annotations.BeforeClass;
+import org.testng.annotations.Test;
 
 import com.github.javafaker.Faker;
 import com.petclinic.api.endpoints.PetEndPoints;
@@ -17,11 +17,11 @@ import io.restassured.response.Response;
 
 public class PetTests {
 
-    static Faker faker;
-    static Pet petPayload;
+    Faker faker;
+    Pet petPayload;
 
     @BeforeClass
-    public static void setup() {
+    public void setup() {
 
         faker = new Faker();
 

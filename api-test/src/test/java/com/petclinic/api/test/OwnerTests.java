@@ -1,22 +1,25 @@
 package com.petclinic.api.test;
 
-import org.junit.Assert;
-import org.junit.BeforeClass;
-import org.junit.Test;
+import org.testng.Assert;
+import org.testng.annotations.BeforeClass;
+import org.testng.annotations.Test;
 
 import com.github.javafaker.Faker;
 import com.petclinic.api.endpoints.OwnerEndPoints;
 import com.petclinic.api.payloads.Owner;
+import com.petclinic.api.utilities.ExtentReportManager;
 
 import io.restassured.response.Response;
 
 public class OwnerTests {
 
-    static Faker faker;
-    static Owner ownerPayload;
+    Faker faker;
+    Owner ownerPayload;
 
     @BeforeClass
-    public static void setup() {
+    public void setup() {
+
+        ExtentReportManager.getInstance("src/test/resources/reports/ExtentReport.html");
 
         faker = new Faker();
 
