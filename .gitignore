@@ -21,3 +21,4 @@ buildNumber.properties
 
 # Reports
 ExtentReport.html
+web-test-report.html
