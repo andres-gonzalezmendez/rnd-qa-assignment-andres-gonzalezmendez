@@ -15,9 +15,13 @@ public class AllOwnersPage {
         this.driver = driver;
         this.navBar = new NavBarComponent(this.driver);
 
-        if (!isOwnersTitleDisplayed() || !isOwnersTableVisible()) {
-            throw new IllegalStateException("Owners page is not visible.");
+        if (!isVisible()) {
+            throw new IllegalStateException("All owners page is not visible.");
         }
+    }
+
+    public boolean isVisible(){
+        return isOwnersTitleDisplayed() && isOwnersTableVisible();
     }
 
     public NavBarComponent getNavBar() {
