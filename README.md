@@ -10,8 +10,8 @@ Manual test cases were written to cover the following features of the **web app*
 
 | **Feature** | **File with test cases**                                              |
 |-------------|-----------------------------------------------------------------------|
-| Owners      | [owners.feature](/web-test/src/test/resource/features/owners.feature) | 
-| Pets        | [pets.feature](/web-test/src/test/resource/features/pets.feature)     |
+| Owners      | [owners.feature](/web-test/src/test/resources/features/owners.feature) | 
+| Pets        | [pets.feature](/web-test/src/test/resources/features/pets.feature)     |
 
 Notes:
 * They only cover the following "happy path" scenarios:
