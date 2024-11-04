@@ -13,7 +13,7 @@ Feature: Owners
     When User opens URL "http://localhost:8080"
     And User selects "Owners" tab in top menu
     And User selects "Register" option in dropdown menu
-    And User enters values for all fields
+    And User enters values for "Owner" fields
     And User selects "Submit" button
     Then List of all owners is presented
     And New owner is in the list

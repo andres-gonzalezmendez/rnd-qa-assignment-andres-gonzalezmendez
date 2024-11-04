@@ -50,26 +50,35 @@ public class AllOwnersPage {
     }
 
     public boolean isOwnerVisible(String firstName, String lastName, String address, String city, String telephone) {
-        try {
-            List<WebElement> ownerRows = driver.findElements(
-                    By.xpath("//table[contains(@class, 'table') and contains(@class, 'table-striped')]/tbody/tr"));
+        WebElement ownerLink = findOwner(firstName, lastName, address, city, telephone);
+        return ownerLink != null;
+    }
 
-            for (WebElement row : ownerRows) {
-                String ownerFullName = row.findElement(By.xpath(".//td[1]//a")).getText();
-                String ownerAddress = row.findElement(By.xpath(".//td[2]")).getText();
-                String ownerCity = row.findElement(By.xpath(".//td[3]")).getText();
-                String ownerTelephone = row.findElement(By.xpath(".//td[4]")).getText();
+    public void selectOwner(String firstName, String lastName, String address, String city, String telephone) {
+        WebElement ownerLink = findOwner(firstName, lastName, address, city, telephone);
+        if (ownerLink != null) {
+            ownerLink.click();
+        } else {
+            System.err.println("Owner " + firstName + " " + lastName + " not found.");
+        }
+    }
 
-                if (ownerFullName.equals(firstName + " " + lastName) &&
-                        ownerAddress.equals(address) &&
-                        ownerCity.equals(city) &&
-                        ownerTelephone.equals(telephone)) {
-                    return true;
-                }
+    private WebElement findOwner(String firstName, String lastName, String address, String city, String telephone) {
+        List<WebElement> ownerRows = driver.findElements(By.xpath("//table[contains(@class, 'table') and contains(@class, 'table-striped')]/tbody/tr"));
+
+        for (WebElement row : ownerRows) {
+            String ownerFullName = row.findElement(By.xpath(".//td[1]//a")).getText();
+            String ownerAddress = row.findElement(By.xpath(".//td[2]")).getText();
+            String ownerCity = row.findElement(By.xpath(".//td[3]")).getText();
+            String ownerTelephone = row.findElement(By.xpath(".//td[4]")).getText();
+
+            if (ownerFullName.equals(firstName + " " + lastName) &&
+                ownerAddress.equals(address) &&
+                ownerCity.equals(city) &&
+                ownerTelephone.equals(telephone)) {
+                return row.findElement(By.xpath(".//td[1]//a"));
             }
-        } catch (NoSuchElementException e) {
-            return false;
-        }   
-        return false;
+        }
+        return null; // Return null if not found
     }
 }
