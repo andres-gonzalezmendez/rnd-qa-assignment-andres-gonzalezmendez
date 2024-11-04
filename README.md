@@ -114,3 +114,5 @@ Note: more information on automatically generated report.
 | **Test**                | **Result** |
 |-------------------------|------------|
 | Add new pet to an owner | PASS       |
+
+Note: more information on automatically generated report.
