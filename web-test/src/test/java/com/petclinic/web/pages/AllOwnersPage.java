@@ -2,6 +2,8 @@ package com.petclinic.web.pages;
 
 import com.petclinic.web.components.NavBarComponent;
 
+import java.util.List;
+
 import org.openqa.selenium.By;
 import org.openqa.selenium.NoSuchElementException;
 import org.openqa.selenium.WebDriver;
@@ -20,7 +22,7 @@ public class AllOwnersPage {
         }
     }
 
-    public boolean isVisible(){
+    public boolean isVisible() {
         return isOwnersTitleDisplayed() && isOwnersTableVisible();
     }
 
@@ -45,5 +47,29 @@ public class AllOwnersPage {
         } catch (NoSuchElementException e) {
             return false;
         }
+    }
+
+    public boolean isOwnerVisible(String firstName, String lastName, String address, String city, String telephone) {
+        try {
+            List<WebElement> ownerRows = driver.findElements(
+                    By.xpath("//table[contains(@class, 'table') and contains(@class, 'table-striped')]/tbody/tr"));
+
+            for (WebElement row : ownerRows) {
+                String ownerFullName = row.findElement(By.xpath(".//td[1]//a")).getText();
+                String ownerAddress = row.findElement(By.xpath(".//td[2]")).getText();
+                String ownerCity = row.findElement(By.xpath(".//td[3]")).getText();
+                String ownerTelephone = row.findElement(By.xpath(".//td[4]")).getText();
+
+                if (ownerFullName.equals(firstName + " " + lastName) &&
+                        ownerAddress.equals(address) &&
+                        ownerCity.equals(city) &&
+                        ownerTelephone.equals(telephone)) {
+                    return true;
+                }
+            }
+        } catch (NoSuchElementException e) {
+            return false;
+        }   
+        return false;
     }
 }

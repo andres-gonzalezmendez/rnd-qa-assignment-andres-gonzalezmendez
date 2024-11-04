@@ -20,6 +20,11 @@ public class OwnersSteps {
     public NavBarComponent navBar;
     public AllOwnersPage allOwnersPage;
     public NewOwnerPage newOwnerPage;
+    private String newOwnerFirstName;
+    private String newOwnerLastName;
+    private String newOwnerAddress;
+    private String newOwnerCity;
+    private String newOwnerTelephone;
 
     @Given("User launches browser")
     public void userLaunchesBrowser(){
@@ -61,17 +66,17 @@ public class OwnersSteps {
     @When("User enters values for all fields")
     public void userEntersValuesForAllFields() {
         this.faker = new Faker();
-        String firstName = faker.name().firstName();
-        String lastName = faker.name().lastName();
-        String address = faker.address().streetAddress();
-        String city = faker.address().cityName();
-        String telephone = "6" + faker.number().digits(9).toString();
+        this.newOwnerFirstName = faker.name().firstName();
+        this.newOwnerLastName = faker.name().lastName();
+        this.newOwnerAddress = faker.address().streetAddress();
+        this.newOwnerCity = faker.address().cityName();
+        this.newOwnerTelephone = "6" + faker.number().digits(9).toString();
 
-        this.newOwnerPage.enterFirstName(firstName);
-        this.newOwnerPage.enterLastName(lastName);
-        this.newOwnerPage.enterAddress(address);
-        this.newOwnerPage.enterCity(city);
-        this.newOwnerPage.enterTelephone(telephone);
+        this.newOwnerPage.enterFirstName(newOwnerFirstName);
+        this.newOwnerPage.enterLastName(newOwnerLastName);
+        this.newOwnerPage.enterAddress(newOwnerAddress);
+        this.newOwnerPage.enterCity(newOwnerCity);
+        this.newOwnerPage.enterTelephone(newOwnerTelephone);
     }
 
     @When("User selects {string} button")
@@ -82,9 +87,10 @@ public class OwnersSteps {
             this.allOwnersPage.isVisible();
         }
     }
+
     @Then("New owner is in the list")
     public void newOwnerIsInTheList() {
-        throw new io.cucumber.java.PendingException();
+        Assert.assertTrue(this.allOwnersPage.isOwnerVisible(this.newOwnerFirstName, this.newOwnerLastName, this.newOwnerAddress, this.newOwnerCity, this.newOwnerTelephone));
     }
 
     @Then("User closes browser")
