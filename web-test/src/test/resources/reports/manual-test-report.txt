@@ -1,0 +1,40 @@
+Feature: Owners
+
+  Scenario: List of all owners
+    Given User launches browser - PASS
+    When User opens URL "http://localhost:8080" - PASS
+    And User selects "Owners" tab in top menu - PASS
+    And User selects "All" option in dropdown menu - PASS
+    Then List of all owners is presented - PASS
+    And User closes browser - PASS
+  Test case result: PASS
+        
+  Scenario: Add new owner
+    Given User launches browser - PASS
+    When User opens URL "http://localhost:8080" - PASS
+    And User selects "Owners" tab in top menu - PASS
+    And User selects "Register" option in dropdown menu - PASS
+    And User enters values for "Owner" fields - PASS
+    And User selects "Submit" button - PASS
+    Then List of all owners is presented - PASS
+    And New owner is in the list - PASS
+    And User closes browser - PASS
+  Test case result: PASS
+
+Feature: Pets
+
+  Scenario: Add new pet to an owner
+    Given User launches browser - PASS
+    When User opens URL "http://localhost:8080" - PASS
+    And User selects "Owners" tab in top menu - PASS
+    And User selects "Register" option in dropdown menu - PASS
+    And User enters values for "Owner" fields - PASS
+    And User selects "Submit" button - PASS
+    And User clicks on new owner's name - PASS
+    And User selects "Add New Pet" button - PASS
+    And User enters values for "Pet" fields - PASS
+    And User selects "Submit" button - PASS
+    Then Owner details page is presented - PASS
+    And New pet is in the list - PASS
+    And User closes browser - PASS
+  Test case result: PASS
