@@ -64,7 +64,8 @@ public class AllOwnersPage {
     }
 
     private WebElement findOwner(String firstName, String lastName, String address, String city, String telephone) {
-        List<WebElement> ownerRows = driver.findElements(By.xpath("//table[contains(@class, 'table') and contains(@class, 'table-striped')]/tbody/tr"));
+        List<WebElement> ownerRows = driver.findElements(
+                By.xpath("//table[contains(@class, 'table') and contains(@class, 'table-striped')]/tbody/tr"));
 
         for (WebElement row : ownerRows) {
             String ownerFullName = row.findElement(By.xpath(".//td[1]//a")).getText();
@@ -73,9 +74,9 @@ public class AllOwnersPage {
             String ownerTelephone = row.findElement(By.xpath(".//td[4]")).getText();
 
             if (ownerFullName.equals(firstName + " " + lastName) &&
-                ownerAddress.equals(address) &&
-                ownerCity.equals(city) &&
-                ownerTelephone.equals(telephone)) {
+                    ownerAddress.equals(address) &&
+                    ownerCity.equals(city) &&
+                    ownerTelephone.equals(telephone)) {
                 return row.findElement(By.xpath(".//td[1]//a"));
             }
         }

@@ -37,9 +37,10 @@ public class StepDefinitions {
     private String newPetBirthDate;
 
     @Given("User launches browser")
-    public void userLaunchesBrowser(){
+    public void userLaunchesBrowser() {
         System.setProperty("webdriver.chrome.driver", "src/test/drivers/chromedriver.exe");
         this.driver = new ChromeDriver();
+        this.driver.manage().window().maximize();
     }
 
     @When("User opens URL {string}")
@@ -122,12 +123,14 @@ public class StepDefinitions {
 
     @Then("New owner is in the list")
     public void newOwnerIsInTheList() {
-        Assert.assertTrue(this.allOwnersPage.isOwnerVisible(this.newOwnerFirstName, this.newOwnerLastName, this.newOwnerAddress, this.newOwnerCity, this.newOwnerTelephone));
+        Assert.assertTrue(this.allOwnersPage.isOwnerVisible(this.newOwnerFirstName, this.newOwnerLastName,
+                this.newOwnerAddress, this.newOwnerCity, this.newOwnerTelephone));
     }
 
     @When("User clicks on new owner's name")
     public void userClickOnNewOwnersName() {
-        this.allOwnersPage.selectOwner(this.newOwnerFirstName, this.newOwnerLastName, this.newOwnerAddress, this.newOwnerCity, this.newOwnerTelephone);
+        this.allOwnersPage.selectOwner(this.newOwnerFirstName, this.newOwnerLastName, this.newOwnerAddress,
+                this.newOwnerCity, this.newOwnerTelephone);
         this.ownerDetailsPage = new OwnerDetailsPage(driver);
     }
 
@@ -135,6 +138,7 @@ public class StepDefinitions {
     public void ownerDetailsPageIsPresented() {
         Assert.assertTrue(this.ownerDetailsPage.isVisible());
     }
+
     @Then("New pet is in the list")
     public void newPetIsInTheList() {
         Assert.assertTrue(this.ownerDetailsPage.isPetVisible(this.newPetName));

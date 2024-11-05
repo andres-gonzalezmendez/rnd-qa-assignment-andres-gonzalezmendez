@@ -76,7 +76,7 @@ public class NewPetPage {
         petTypeSelect.findElement(By.xpath("//option[text()='" + petType + "']")).click();
     }
 
-    public void selectRandomPetType(){
+    public void selectRandomPetType() {
         List<String> availablePetTypes = getAllPetTypes();
 
         if (availablePetTypes.isEmpty()) {

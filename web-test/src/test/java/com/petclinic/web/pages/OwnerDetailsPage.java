@@ -41,7 +41,8 @@ public class OwnerDetailsPage {
 
     public boolean isOwnerInfoTableVisible() {
         try {
-            WebElement infoTable = driver.findElement(By.xpath("//table[contains(@class, 'table') and contains(@class, 'table-striped')]"));
+            WebElement infoTable = driver
+                    .findElement(By.xpath("//table[contains(@class, 'table') and contains(@class, 'table-striped')]"));
             return infoTable.isDisplayed();
         } catch (NoSuchElementException e) {
             return false;
@@ -50,7 +51,10 @@ public class OwnerDetailsPage {
 
     public String getOwnerName() {
         try {
-            return driver.findElement(By.xpath("//table[contains(@class, 'table') and contains(@class, 'table-striped')]//td/b")).getText();
+            return driver
+                    .findElement(
+                            By.xpath("//table[contains(@class, 'table') and contains(@class, 'table-striped')]//td/b"))
+                    .getText();
         } catch (NoSuchElementException e) {
             return null;
         }
@@ -58,7 +62,10 @@ public class OwnerDetailsPage {
 
     public String getOwnerAddress() {
         try {
-            return driver.findElement(By.xpath("//table[contains(@class, 'table') and contains(@class, 'table-striped')]/tbody/tr[2]/td")).getText();
+            return driver
+                    .findElement(By.xpath(
+                            "//table[contains(@class, 'table') and contains(@class, 'table-striped')]/tbody/tr[2]/td"))
+                    .getText();
         } catch (NoSuchElementException e) {
             return null;
         }
@@ -66,7 +73,10 @@ public class OwnerDetailsPage {
 
     public String getOwnerCity() {
         try {
-            return driver.findElement(By.xpath("//table[contains(@class, 'table') and contains(@class, 'table-striped')]/tbody/tr[3]/td")).getText();
+            return driver
+                    .findElement(By.xpath(
+                            "//table[contains(@class, 'table') and contains(@class, 'table-striped')]/tbody/tr[3]/td"))
+                    .getText();
         } catch (NoSuchElementException e) {
             return null;
         }
@@ -74,7 +84,10 @@ public class OwnerDetailsPage {
 
     public String getOwnerTelephone() {
         try {
-            return driver.findElement(By.xpath("//table[contains(@class, 'table') and contains(@class, 'table-striped')]/tbody/tr[4]/td")).getText();
+            return driver
+                    .findElement(By.xpath(
+                            "//table[contains(@class, 'table') and contains(@class, 'table-striped')]/tbody/tr[4]/td"))
+                    .getText();
         } catch (NoSuchElementException e) {
             return null;
         }
@@ -99,11 +112,12 @@ public class OwnerDetailsPage {
     }
 
     public boolean isPetVisible(String name) {
-        List<WebElement> petRows = driver.findElements(By.xpath("//table[contains(@class, 'table-striped')][2]/tbody/tr"));
+        List<WebElement> petRows = driver
+                .findElements(By.xpath("//table[contains(@class, 'table-striped')][2]/tbody/tr"));
 
         for (WebElement row : petRows) {
             String petName = row.findElement(By.xpath(".//dt[text()='Name']/following-sibling::dd/a")).getText();
-            
+
             if (petName.equals(name)) {
                 return true;
             }

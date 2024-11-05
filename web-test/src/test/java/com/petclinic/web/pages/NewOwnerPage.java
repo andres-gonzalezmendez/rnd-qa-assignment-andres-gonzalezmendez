@@ -20,7 +20,7 @@ public class NewOwnerPage {
         }
     }
 
-    public boolean isVisible(){
+    public boolean isVisible() {
         return isOwnerTitleDisplayed() && isNewOwnerFormVisible();
     }
 
